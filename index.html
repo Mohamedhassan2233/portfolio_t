@@ -372,9 +372,9 @@ footer{border-top:1px solid var(--border);padding:2rem 5rem;display:flex;justify
   <div class="contact-wrap">
     <div>
       <div class="clinks">
-        <a href="mailto:mhassan4406@gmail.com" class="clink reveal">
+        <a href="/cdn-cgi/l/email-protection#0f62676e7c7c6e613b3b3f394f68626e6663216c6062" class="clink reveal">
           <div class="ci-icon">✉️</div>
-          <div><span class="ci-lbl">Email</span><span class="ci-val">mhassan4406@gmail.com</span></div>
+          <div><span class="ci-lbl">Email</span><span class="ci-val"><span class="__cf_email__" data-cfemail="ff92979e8c8c9e91cbcbcfc9bf98929e9693d19c9092">[email&#160;protected]</span></span></div>
         </a>
         <a href="https://wa.me/201031644908" target="_blank" class="clink reveal">
           <div class="ci-icon">💬</div>
@@ -401,7 +401,7 @@ footer{border-top:1px solid var(--border);padding:2rem 5rem;display:flex;justify
 
 <footer>
   <div class="fcopy">© 2026 Mohamed Hassan <span class="fdot">·</span> QA Tester</div>
-  <div class="fcopy">mhassan4406@gmail.com <span class="fdot">·</span> +20 103 164 4908</div>
+  <div class="fcopy"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b36333a28283a356f6f6b6d1b3c363a323775383436">[email&#160;protected]</a> <span class="fdot">·</span> +20 103 164 4908</div>
 </footer>
 </div><!-- end #main-page -->
 
@@ -441,11 +441,15 @@ footer{border-top:1px solid var(--border);padding:2rem 5rem;display:flex;justify
           </div>
         </div>
         <div class="fgroup">
-          <label class="flabel">Project File (PDF / Excel / ZIP)</label>
+          <label class="flabel">Project Link (URL) — Optional</label>
+          <input class="finput" id="proj-link" type="url" placeholder="https://github.com/... or Google Drive, Notion, etc."/>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Project File (Any Format) — Optional</label>
           <div class="file-upload">
-            <input type="file" id="proj-file" accept=".pdf,.xlsx,.xls,.zip,.doc,.docx,.csv" onchange="handleFile(this)"/>
+            <input type="file" id="proj-file" accept="*/*" onchange="handleFile(this)"/>
             <div class="file-upload-icon">📎</div>
-            <div class="file-upload-text">Click to upload file</div>
+            <div class="file-upload-text">Click to upload any file (PDF, Excel, ZIP, Word, CSV, …)</div>
             <div class="file-name-ok" id="file-name-ok"></div>
           </div>
         </div>
@@ -464,7 +468,7 @@ footer{border-top:1px solid var(--border);padding:2rem 5rem;display:flex;justify
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Cursor
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
 document.addEventListener('mousemove',e=>{
@@ -499,12 +503,14 @@ function handleFile(input){
 function addProject(){
   const name=document.getElementById('proj-name').value.trim();
   const desc=document.getElementById('proj-desc').value.trim();
+  const link=document.getElementById('proj-link').value.trim();
   const msg=document.getElementById('form-msg');
   if(!name||!desc){msg.style.color='#ff5050';msg.textContent='⚠ Name and description are required.';return;}
-  projects.unshift({id:Date.now(),name,desc,img:_imgData,fileData:_fileData,fileName:_fileName});
+  projects.unshift({id:Date.now(),name,desc,img:_imgData,fileData:_fileData,fileName:_fileName,link});
   save(); renderAdmin(); renderProjects();
   document.getElementById('proj-name').value='';
   document.getElementById('proj-desc').value='';
+  document.getElementById('proj-link').value='';
   document.getElementById('proj-img').value='';
   document.getElementById('proj-file').value='';
   document.getElementById('img-name-ok').textContent='';
@@ -549,6 +555,7 @@ function renderProjects(){
         <div class="proj-title">${p.name}</div>
         <div class="proj-desc">${p.desc}</div>
         <div class="proj-footer">
+          ${p.link?`<a class="proj-link" href="${p.link}" target="_blank" rel="noopener">🔗 View Project</a>`:''}
           ${p.fileData?`<a class="proj-link" href="${p.fileData}" download="${p.fileName}">⬇ Download File</a>`:''}
         </div>
       </div>
@@ -557,17 +564,4 @@ function renderProjects(){
 }
 
 function openAdmin(){
-  document.getElementById('main-page').classList.add('hidden');
-  document.getElementById('admin-page').classList.add('active');
-  renderAdmin(); window.scrollTo(0,0);
-}
-function closeAdmin(){
-  document.getElementById('admin-page').classList.remove('active');
-  document.getElementById('main-page').classList.remove('hidden');
-  window.scrollTo(0,0);
-}
-
-renderProjects();
-</script>
-</body>
-</html>
+  document.getElementById('m
